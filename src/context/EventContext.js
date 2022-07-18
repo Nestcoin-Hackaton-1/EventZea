@@ -79,6 +79,13 @@ export const EventProvider = ({ children }) => {
       setnetworkConnected("Mumbai");
     }
 
+    if (chainId !== 4) {
+      return NotificationManager.error(
+        "Wrong Network...Please change to Rinkeby",
+        "Network"
+      );
+    }
+
     if (needSigner) {
       const signer = web3Provider.getSigner();
       return signer;
@@ -98,6 +105,21 @@ export const EventProvider = ({ children }) => {
 
     return eventContract;
   };
+
+  const createEventContract2 = async () => {
+    const provider1 = new ethers.providers.JsonRpcProvider(
+      process.env.REACT_APP_RINKEBY_URL
+    );
+
+    const eventContract = new ethers.Contract(
+      contractAddress,
+      contractABI,
+      provider1
+    );
+
+    return eventContract;
+  };
+
   const createPaymentContractToken = async () => {
     const provider = await getProviderOrSigner();
     const signer = provider.getSigner();
@@ -106,6 +128,20 @@ export const EventProvider = ({ children }) => {
       paymentContractAddress,
       paymentContractABI,
       signer
+    );
+
+    return paymentContract;
+  };
+
+  const createPaymentContractToken2 = async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      process.env.REACT_APP_RINKEBY_URL
+    );
+
+    const paymentContract = new ethers.Contract(
+      paymentContractAddress,
+      paymentContractABI,
+      provider
     );
 
     return paymentContract;
@@ -156,7 +192,7 @@ export const EventProvider = ({ children }) => {
   };
 
   const getEvents = async () => {
-    const contract = await createEventContract();
+    const contract = await createEventContract2();
     setLoading1(true);
     try {
       const allEvents = await contract.fetchAllEvents();
@@ -188,6 +224,7 @@ export const EventProvider = ({ children }) => {
     try {
       setLoading1(true);
       const myEvents = await contract.fetchMyEvents();
+      console.log("myEvents", myEvents);
       setLoading1(false);
       setMyEventList(myEvents);
     } catch (error) {
@@ -242,7 +279,7 @@ export const EventProvider = ({ children }) => {
   };
 
   const getFlippedTickets = async () => {
-    const contract = await createEventContract();
+    const contract = await createEventContract2();
     try {
       setLoading1(true);
       const flipped = await contract.fetchMyResellEvent();
@@ -385,20 +422,39 @@ export const EventProvider = ({ children }) => {
   const connectWallet = async () => {
     try {
       // When used for the first time, it prompts the user to connect their wallet
-      const prov = await getProviderOrSigner();
+      web3Modal = new Web3Modal({
+        network: "rinkeby", // optional
+        cacheProvider: true, // optional
+        providerOptions, // required
+      });
+
+      provider = await web3Modal.connect();
+      const web3Provider = new providers.Web3Provider(provider);
+      const prov = web3Provider;
 
       const { chainId } = await prov.getNetwork();
 
+      if (chainId == 1) {
+        setnetworkConnected("Mainnet");
+      }
+      if (chainId == 3) {
+        setnetworkConnected("Ropsten");
+      }
+      if (chainId == 4) {
+        setnetworkConnected("Rinkeby");
+      }
+      if (chainId == 5) {
+        setnetworkConnected("Goerli");
+      }
+      if (chainId == 137) {
+        setnetworkConnected("Polygon");
+      }
+      if (chainId == 80001) {
+        setnetworkConnected("Mumbai");
+      }
+
       const web3 = new Web3(provider);
       const accounts = await web3.eth.getAccounts();
-
-      const contract = await createPaymentContractToken();
-      const contract2 = await createEventContract();
-
-      const busdBalance = await contract.balanceOf(accounts[0]);
-      const salesBalance = await contract2.SalesBalance(accounts[0]);
-      setBalanceBusd(Number(BigNumber.from(busdBalance)) / 10 ** 18);
-      setBalanceSales(Number(BigNumber.from(salesBalance)) / 10 ** 18);
 
       if (chainId !== 4) {
         setCurrentAccount("");
@@ -413,9 +469,18 @@ export const EventProvider = ({ children }) => {
           "Wrong Network...Please change to Rinkeby",
           "Network"
         );
+        //getEvents();
       } else {
         setCurrentAccount(accounts[0]);
         checkAllowance(accounts[0], contractAddress);
+
+        const contract = await createPaymentContractToken();
+        const contract2 = await createEventContract();
+
+        const busdBalance = await contract.balanceOf(accounts[0]);
+        const salesBalance = await contract2.SalesBalance(accounts[0]);
+        setBalanceBusd(Number(BigNumber.from(busdBalance)) / 10 ** 18);
+        setBalanceSales(Number(BigNumber.from(salesBalance)) / 10 ** 18);
       }
 
       const bal = await prov.getBalance(accounts[0]);
@@ -522,8 +587,6 @@ export const EventProvider = ({ children }) => {
 
       connectWallet();
     }
-
-    setBalance(0);
 
     // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
   }, [currentAccount]);
