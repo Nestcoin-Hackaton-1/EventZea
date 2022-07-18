@@ -1,0 +1,239 @@
+.home-text1 {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 96px;
+  text-align: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 65px;
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+}
+
+.home-discover-but {
+  width: 384px;
+  height: 64px;
+  color: white;
+  border: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #00d395;
+  font-family: "Quicksand", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 32px;
+}
+
+.home-category {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 92px;
+  margin-top: 90px;
+  color: #00d395;
+}
+
+.home-category2 {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  font-family: "League Spartan", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  color: #00d395;
+}
+
+.home-flow {
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.home-flow1 {
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.home-box {
+  border-radius: 16px;
+  width: 30%;
+  flex: 0 0 auto;
+  padding-bottom: 30px;
+  margin-right: 30px;
+}
+
+.inner-box {
+  padding: 20px;
+  background: #070a0e;
+  margin-top: 0;
+}
+
+.home-section1 {
+  background-color: white;
+}
+
+.home-section1-inner {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-text2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  font-family: "League Spartan", sans-serif;
+  color: #050e0e;
+  padding-top: 100px;
+  padding-bottom: 56px;
+}
+
+.evimg {
+  width: 100%;
+  height: 229px;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.home-text3 {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  color: #00d395;
+  margin-bottom: 16px;
+}
+
+.home-text4 {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.home-text5 {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+.home-text6 {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 32px;
+}
+
+.home-text7 {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+.moving {
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  display: inline-block;
+  padding-top: 30px;
+}
+
+.moving-box {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  color: white;
+}
+
+.sidebar-inner {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  text-align: center;
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+}
+
+.side-item {
+  margin-bottom: 50px;
+}
+
+.close {
+  display: block;
+  width: 70px;
+  margin-left: auto;
+  margin-right: 30px;
+  margin-top: 50px;
+}
+
+.animation1 {
+  transform: translateX(0px);
+  transition: transform 1.5s;
+}
+
+.animation2 {
+  transform: translateX(-2000px);
+  transition: transform 1.5s;
+}
+
+.loading-card {
+  width: 40%;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  text-align: center;
+  font-family: "League Spartan", sans-serif;
+  font-size: 24px;
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+}
+
+.loading-text {
+  position: relative;
+  top: -100px;
+}

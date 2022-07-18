@@ -1,0 +1,26 @@
+.disc {
+  background-image: url("../../public/images/hello2.png");
+  width: 100%;
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.disc-but {
+  width: 685px;
+  height: 64px;
+  border: none;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  background: #dadddd;
+  padding-left: 10px;
+  margin-top: 120px;
+}
+
+.disc-inner {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}

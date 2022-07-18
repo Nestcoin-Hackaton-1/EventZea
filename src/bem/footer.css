@@ -1,0 +1,23 @@
+.footer {
+  background: #070a0e;
+}
+
+.footer-inner {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  color: #00d395;
+}
+
+.footer-inner2 {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
