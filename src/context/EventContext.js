@@ -540,6 +540,7 @@ export const EventProvider = ({ children }) => {
     } catch (error) {
       setLoading(false);
       NotificationManager.error(error.reason, "Error");
+      console.log(error.message);
     }
   };
 
@@ -593,10 +594,6 @@ export const EventProvider = ({ children }) => {
 
   useEffect(() => {
     getEvents();
-    getMyEvents();
-    getTickets();
-    getFlippedTickets();
-    getListed();
   }, []);
 
   return (
@@ -608,6 +605,10 @@ export const EventProvider = ({ children }) => {
         checkAllowance,
         approveAmount,
         buy,
+        getMyEvents,
+        getTickets,
+        getFlippedTickets,
+        getListed,
         search,
         listTicket,
         getActiveTickets,

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from "react";
+import React, { useRef, useContext, useState, useEffect } from "react";
 import { BigNumber, ethers, providers } from "ethers";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -13,11 +13,17 @@ export default function Resell() {
     sell,
     allowance,
     approveAmount,
+    getListed,
     sold,
     listTicket,
     loading,
     myEventList,
   } = useContext(EventContext);
+
+  useEffect(() => {
+    getListed();
+  }, []);
+
   return (
     <div>
       <Sidebar />

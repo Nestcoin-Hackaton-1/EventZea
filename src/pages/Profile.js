@@ -13,6 +13,9 @@ export default function Profile() {
     sold,
     listTicket,
     getActiveTickets,
+    getMyEvents,
+    getTickets,
+    getFlippedTickets,
     check,
     loading,
     myEventList,
@@ -24,6 +27,12 @@ export default function Profile() {
   const [eventId, setEventId] = useState("");
   const [st, setSt] = useState([]);
   const priceRef = useRef();
+
+  useEffect(() => {
+    getMyEvents();
+    getTickets();
+    getFlippedTickets();
+  }, []);
 
   const flip = () => {
     listTicket(eventId, priceRef.current.value);
