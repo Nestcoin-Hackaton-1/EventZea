@@ -533,6 +533,9 @@ export const EventProvider = ({ children }) => {
           const bal = await provider.getBalance(accounts[0]);
           setBalance(Number(BigNumber.from(bal)) / 10 ** 18);
           setCurrentAccount(accounts[0]);
+          getMyEvents();
+          getTickets();
+          getFlippedTickets();
         }
       });
 
@@ -540,7 +543,6 @@ export const EventProvider = ({ children }) => {
       provider.on("chainChanged", async (chainId) => {
         console.log("chain", chainId);
         await getProviderOrSigner();
-        getEvents();
       });
 
       // Subscribe to provider connection
