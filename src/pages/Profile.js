@@ -232,15 +232,19 @@ export default function Profile() {
                         {" "}
                         {ethers.utils.formatEther(item.price)} BUSD
                       </div>
-                      <button
-                        className="flip"
-                        onClick={() => {
-                          setPriceState(true);
-                          setEventId(Number(BigNumber.from(item.eventId)));
-                        }}
-                      >
-                        {st[index] === true ? "Listed" : "List"}
-                      </button>
+                      {st[index] === true ? (
+                        <button className="flip">Listed</button>
+                      ) : (
+                        <button
+                          className="flip"
+                          onClick={() => {
+                            setPriceState(true);
+                            setEventId(Number(BigNumber.from(item.eventId)));
+                          }}
+                        >
+                          List
+                        </button>
+                      )}
                     </div>
                   </div>
                 );
@@ -353,11 +357,6 @@ export default function Profile() {
                           "....." +
                           item.admin.slice(-5)}
                       </div>
-                      <div className="home-text6">
-                        {" "}
-                        {ethers.utils.formatEther(item.price)} BUSD
-                      </div>
-                      <button className="flip">Flip Ticket</button>
                     </div>
                   </div>
                 );

@@ -181,7 +181,7 @@ export const EventProvider = ({ children }) => {
         }
       );
 
-      await txn.wait(3);
+      await txn.wait();
       setLoading(false);
       NotificationManager.success("Event was created successfully", "Success");
       window.location.href = "/";
