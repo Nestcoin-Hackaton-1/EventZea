@@ -277,3 +277,20 @@ body {
   left: 0;
   right: 0;
 }
+
+.loading-card2 {
+  width: 40%;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  text-align: center;
+  font-family: "League Spartan", sans-serif;
+  font-size: 24px;
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 400px;
+  left: 0;
+  right: 0;
+}

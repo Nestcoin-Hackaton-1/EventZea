@@ -350,7 +350,7 @@ export default function Profile() {
         </div>
       ) : null}
       {priceState === true && profileState === "active" ? (
-        <div className="loading-card">
+        <div className="loading-card2">
           <input
             className="flip-input"
             ref={priceRef}
