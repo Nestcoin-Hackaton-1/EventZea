@@ -3,6 +3,7 @@ import { BigNumber, ethers, providers } from "ethers";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { EventContext } from "../context/EventContext";
+import { NotificationManager } from "react-notifications";
 
 export default function Profile() {
   const {
@@ -20,6 +21,7 @@ export default function Profile() {
     loading,
     myEventList,
     balancebusd,
+    withdrawBusd,
     balancesales,
   } = useContext(EventContext);
   const [profileState, setProfile] = useState("event");
@@ -27,6 +29,7 @@ export default function Profile() {
   const [eventId, setEventId] = useState("");
   const [st, setSt] = useState([]);
   const priceRef = useRef();
+  const amountRef = useRef();
 
   useEffect(() => {
     getMyEvents();
@@ -37,6 +40,19 @@ export default function Profile() {
   const flip = () => {
     listTicket(eventId, priceRef.current.value);
     setPriceState(false);
+  };
+
+  const cash = () => {
+    if (amountRef.current.value === "") {
+      return NotificationManager.error("Amount must be greater than zero");
+    }
+    if (Number(amountRef.current.value) > Number(balancesales)) {
+      return NotificationManager.error(
+        "Amount requested is greater than avalable balance"
+      );
+    }
+    withdrawBusd(amountRef.current.value);
+    amountRef.current.value = "";
   };
 
   useEffect(async () => {
@@ -76,6 +92,17 @@ export default function Profile() {
             <div className="balance">Tickets Sold Balance (Available)</div>
             <div className="busd">{balancesales} BUSD</div>
           </div>
+          <div className="balance-box">
+            <div className="balance">Withdraw</div>
+            <input
+              className="flip-input1"
+              ref={amountRef}
+              placeholder="Enter amount"
+            />
+            <button className="flip-button1" onClick={cash}>
+              Withdraw
+            </button>
+          </div>
         </div>
         <div className="profile-list">
           <div
@@ -93,14 +120,6 @@ export default function Profile() {
             }
           >
             Active Tickets
-          </div>
-          <div
-            onClick={() => setProfile("sold")}
-            className={
-              profileState === "sold" ? "active profile-item" : "profile-item"
-            }
-          >
-            Sold Tickets
           </div>
           <div
             onClick={() => setProfile("bought")}
@@ -150,6 +169,9 @@ export default function Profile() {
                       </div>
                       <div className="home-text5">{item.location}</div>
                       <div className="home-text5">
+                        EventId - {Number(BigNumber.from(item.eventId))}
+                      </div>
+                      <div className="home-text5">
                         Organized by{" "}
                         {item.admin.slice(0, 5) +
                           "....." +
@@ -158,8 +180,11 @@ export default function Profile() {
                       <div className="home-text6">
                         {ethers.utils.formatEther(item.price)} BUSD
                       </div>
-                      <div className="home-text7">
-                        <img src="./images/users.svg" />{" "}
+                      <div
+                        style={{ paddingTop: "10px" }}
+                        className="home-text3"
+                      >
+                        Ticket Sold:
                         <span style={{ paddingLeft: "10px" }}>
                           {Number(
                             String(Number(BigNumber.from(item.ticketCount)))
@@ -169,7 +194,6 @@ export default function Profile() {
                                 Number(BigNumber.from(item.ticketRemaining))
                               )
                             )}{" "}
-                          people are attending this event
                         </span>
                       </div>
                     </div>
@@ -254,61 +278,6 @@ export default function Profile() {
                 <div className="no-event">
                   You do not have any active events
                 </div>
-              ) : null}
-            </div>
-          </section>
-        ) : profileState === "sold" ? (
-          <section className="profile-sold">
-            <div className="home-flow1">
-              {loading1 && sold.length === 0 ? (
-                <div
-                  style={{
-                    color: "black",
-                    textAlign: "center",
-                    fontSize: "24px",
-                  }}
-                >
-                  Loading.......
-                </div>
-              ) : null}
-              {sold.map((item) => {
-                return (
-                  <div className="home-box1">
-                    <img
-                      className="evimg"
-                      src={item.image || "./images/image.png"}
-                    />
-                    <div className="inner-box1">
-                      <div className="home-text3">{item.name}</div>
-                      <div className="home-text4">
-                        {" "}
-                        {new Date(
-                          Number(
-                            String(Number(BigNumber.from(item.startdate)))
-                          ) * 1000
-                        ).toDateString()}{" "}
-                        at{" "}
-                        {new Date(
-                          Number(
-                            String(Number(BigNumber.from(item.startdate)))
-                          ) * 1000
-                        ).toLocaleTimeString()}
-                      </div>
-                      <div className="home-text5">{item.location}</div>
-                      <div className="home-text5">
-                        {" "}
-                        Organized by{" "}
-                        {item.admin.slice(0, 5) +
-                          "....." +
-                          item.admin.slice(-5)}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-
-              {sold.length === 0 ? (
-                <div className="no-event">You have not sold any tickets</div>
               ) : null}
             </div>
           </section>

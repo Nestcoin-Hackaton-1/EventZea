@@ -108,7 +108,7 @@ export default function Resell() {
                   </div>
                 );
               })}
-              {allResell.length === 0 ? (
+              {allResell.length === 0 && loading1 === false ? (
                 <div className="no-event2">No Listed Ticket</div>
               ) : null}
             </div>

@@ -24,6 +24,9 @@ export default function Sidebar() {
         onClick={() => dispatch(changeNav(!navState))}
       />
       <div className="sidebar-inner">
+        <Link to="/check" className="anone">
+          <div className="side-item">Event Check</div>
+        </Link>
         <Link to="/resell" className="anone">
           <div className="side-item">Resell</div>
         </Link>

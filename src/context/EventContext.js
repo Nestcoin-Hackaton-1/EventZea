@@ -31,6 +31,7 @@ export const EventProvider = ({ children }) => {
   const [activeTicket, setActiveTicket] = useState([]);
   const [sold, setSold] = useState([]);
   const [allResell, setResell] = useState([]);
+  const [attend, setAttend] = useState(false);
 
   const web3ModalRef = useRef();
   let provider;
@@ -283,7 +284,9 @@ export const EventProvider = ({ children }) => {
     try {
       setLoading1(true);
       const flipped = await contract.fetchMyResellEvent();
-      console.log(flipped);
+      const flipped1 = await contract.fetchMyResell();
+      console.log("flip", flipped);
+      console.log("2", flipped1);
       setLoading1(false);
       setSold(flipped);
     } catch (error) {
@@ -389,6 +392,19 @@ export const EventProvider = ({ children }) => {
     const contract = await createEventContract();
     try {
       const res = await contract.checkIfListed(eventId, addr);
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const checkAttendance = async (eventId, addr) => {
+    setLoading(true);
+    const contract = await createEventContract();
+    try {
+      const res = await contract.hasTicket(eventId, addr);
+      setLoading(false);
       console.log(res);
       return res;
     } catch (error) {
@@ -523,6 +539,32 @@ export const EventProvider = ({ children }) => {
     }
   };
 
+  const withdrawBusd = async (amount) => {
+    console.log(amount, "kkkk");
+    const contract = await createEventContract();
+    try {
+      setLoading(true);
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+      const tx = await contract.withdrawSaleBalance(
+        ethers.utils.parseEther(amount)
+      );
+      await tx.wait(1);
+
+      setLoading(false);
+      NotificationManager.success("Transaction successful", "Success");
+      window.location.reload();
+    } catch (error) {
+      console.log(error.transaction);
+      setLoading(false);
+      NotificationManager.error(error.reason, "Error");
+      console.log(error.message);
+    }
+  };
+
   const buy = async (eventId) => {
     const contract = await createEventContract();
     try {
@@ -606,6 +648,7 @@ export const EventProvider = ({ children }) => {
         createEventFun,
         checkAllowance,
         approveAmount,
+        checkAttendance,
         buy,
         getMyEvents,
         getTickets,
@@ -614,6 +657,7 @@ export const EventProvider = ({ children }) => {
         search,
         listTicket,
         getActiveTickets,
+        withdrawBusd,
         allResell,
         check,
         sell,

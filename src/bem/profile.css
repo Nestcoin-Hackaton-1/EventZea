@@ -143,6 +143,7 @@
   font-weight: 800;
   font-size: 24px;
   color: #00d395;
+  padding-top: 10px;
 }
 
 .busd {
@@ -151,4 +152,35 @@
   font-weight: 800;
   font-size: 32px;
   color: #2e2c2c;
+  padding-top: 10px;
+}
+
+.flip-button1 {
+  width: 234px;
+  height: 56px;
+  border: none;
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  background: #00d395;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.flip-input1 {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  height: 34px;
+  padding-left: 10px;
+  font-family: "League Spartan", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
 }

@@ -16,6 +16,7 @@ import Resell from "./pages/Resell";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import { EventProvider } from "./context/EventContext";
+import AttendanceCheck from "./pages/AttendanceCheck";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/discover" element={<Discover />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/resell" element={<Resell />} />
+            <Route exact path="/check" element={<AttendanceCheck />} />
           </Routes>
           <NotificationContainer />
         </BrowserRouter>
