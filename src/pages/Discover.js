@@ -28,7 +28,7 @@ export default function Discover() {
         <div className="disc-inner">
           <input
             className="disc-but"
-            placeholder="Search event names,organizers"
+            placeholder="Search event names,category"
             ref={searchRef}
             onChange={search}
           />

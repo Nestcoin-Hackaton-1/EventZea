@@ -98,7 +98,7 @@ export default function Home() {
             </Link>
           </button>
 
-          <button className="home-discover-but">
+          <button className="home-discover-but1">
             <Link to="/event" className="anone">
               Create your event
             </Link>

@@ -30,6 +30,22 @@ body {
   margin-top: 32px;
 }
 
+.home-discover-but1 {
+  width: 384px;
+  height: 64px;
+  background-color: transparent;
+  border: 2px solid #00d395;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 32px;
+}
+
 .home-category {
   width: 50%;
   display: flex;

@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer-inner2">
           <div>About</div>
           <div>Terms and Condition</div>
-          <Link to="/discover">
+          <Link className="anone1" to="/discover">
             <div>Find Events</div>
           </Link>
         </div>

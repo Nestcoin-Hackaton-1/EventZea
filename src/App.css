@@ -8,6 +8,10 @@ body {
   color: white;
 }
 
+.anone1 {
+  text-decoration: none !important;
+  color: #00d395 !important;
+}
 .spinner {
   width: 80px;
   height: 80px;

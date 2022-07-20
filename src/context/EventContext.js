@@ -368,7 +368,10 @@ export const EventProvider = ({ children }) => {
   const search = (evt) => {
     console.log(evt.target.value);
     const result = eventList.filter((item) => {
-      return item.name.toLowerCase().includes(evt.target.value.toLowerCase());
+      return (
+        item.name.toLowerCase().includes(evt.target.value.toLowerCase()) ||
+        item.category.toLowerCase().includes(evt.target.value.toLowerCase())
+      );
     });
 
     if (evt.target.value === "") {
