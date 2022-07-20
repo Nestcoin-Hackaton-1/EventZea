@@ -182,6 +182,7 @@ body {
   font-size: 24px;
   display: inline-block;
   padding-top: 30px;
+  overflow-x: hidden;
 }
 
 .moving-box {
@@ -202,7 +203,7 @@ body {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 100px;
+  padding-top: 0px;
   text-align: center;
   font-family: "League Spartan", sans-serif;
   font-style: normal;

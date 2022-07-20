@@ -119,8 +119,6 @@ export default function Home() {
           <div>Health</div>
           <div>Education</div>
         </div>
-
-        <div className="moving-box">{renderMarqueeElements()}</div>
       </div>
 
       <main>

@@ -51,7 +51,7 @@ export default function AttendanceCheck() {
                   <input
                     ref={eventRef}
                     className="event-input"
-                    placeholder="Enter event title"
+                    placeholder="Enter event id"
                     required
                   />
                 </div>
@@ -63,7 +63,7 @@ export default function AttendanceCheck() {
                   <input
                     ref={nameRef}
                     className="event-input"
-                    placeholder="Enter event title"
+                    placeholder="Enter address"
                     required
                   />
                 </div>
