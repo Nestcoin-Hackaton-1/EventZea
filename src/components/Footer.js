@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -8,7 +9,9 @@ export default function Footer() {
         <div className="footer-inner2">
           <div>About</div>
           <div>Terms and Condition</div>
-          <div>Find Events</div>
+          <Link to="/discover">
+            <div>Find Events</div>
+          </Link>
         </div>
       </div>
     </div>

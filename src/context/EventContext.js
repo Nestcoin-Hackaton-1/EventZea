@@ -26,6 +26,7 @@ export const EventProvider = ({ children }) => {
   const [allowance, setAllowance] = useState("");
   const [popularEvent, setPopularEvent] = useState([]);
   const [discoverEvent, setDiscoverEvent] = useState([]);
+  const [discoverEvent2, setDiscoverEvent2] = useState([]);
   const [myEventList, setMyEventList] = useState([]);
   const [myTicketList, setMyTicketList] = useState([]);
   const [activeTicket, setActiveTicket] = useState([]);
@@ -302,6 +303,7 @@ export const EventProvider = ({ children }) => {
       setLoading1(true);
       const listed = await contract.fetchAllResell();
       const allEvents = await contract.fetchAllEvents();
+      console.log(allEvents);
       console.log("list", listed);
       const ListedList = [];
       allEvents.forEach((item1) => {
@@ -311,7 +313,7 @@ export const EventProvider = ({ children }) => {
           if (
             Number(BigNumber.from(item2.eventId)) ===
               Number(BigNumber.from(item1.eventId)) &&
-            Number(BigNumber.from(item2.eventId)) !== 0
+            Number(BigNumber.from(item2.admin)) !== 0
           ) {
             console.log("yyy");
             let obj = {
@@ -331,6 +333,7 @@ export const EventProvider = ({ children }) => {
       });
       console.log("new", ListedList);
       setResell(ListedList);
+      setDiscoverEvent2(ListedList);
       setLoading1(false);
     } catch (error) {
       setLoading1(false);
@@ -375,6 +378,19 @@ export const EventProvider = ({ children }) => {
     console.log("result", result);
 
     setDiscoverEvent(result);
+  };
+
+  const search2 = (evt) => {
+    console.log(evt.target.value);
+    const result = allResell.filter((item) => {
+      return item.name.toLowerCase().includes(evt.target.value.toLowerCase());
+    });
+
+    if (evt.target.value === "") {
+      setDiscoverEvent2([...eventList]);
+    }
+
+    setDiscoverEvent2(result);
   };
 
   const checkAllowance = async (owner, spender) => {
@@ -658,6 +674,7 @@ export const EventProvider = ({ children }) => {
         listTicket,
         getActiveTickets,
         withdrawBusd,
+        search2,
         allResell,
         check,
         sell,
@@ -667,6 +684,7 @@ export const EventProvider = ({ children }) => {
         activeTicket,
         popularEvent,
         discoverEvent,
+        discoverEvent2,
         allowance,
         eventList,
         loading1,

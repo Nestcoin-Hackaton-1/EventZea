@@ -12,6 +12,8 @@ export default function Resell() {
     allResell,
     sell,
     allowance,
+    discoverEvent2,
+    search2,
     approveAmount,
     getListed,
     sold,
@@ -19,6 +21,8 @@ export default function Resell() {
     loading,
     myEventList,
   } = useContext(EventContext);
+
+  const searchRef = useRef();
 
   useEffect(() => {
     getListed();
@@ -33,6 +37,8 @@ export default function Resell() {
           <input
             className="disc-but"
             placeholder="Search event names,organizers "
+            ref={searchRef}
+            onChange={search2}
           />
         </div>
       </div>
@@ -41,7 +47,7 @@ export default function Resell() {
           <div className="home-section1-inner">
             <div className="home-text2">Flipped Tickets</div>
             <div className="home-flow">
-              {loading1 && allResell.length === 0 ? (
+              {loading1 && discoverEvent2.length === 0 ? (
                 <div
                   style={{
                     color: "black",
@@ -52,7 +58,7 @@ export default function Resell() {
                   Loading.......
                 </div>
               ) : null}
-              {allResell.map((item) => {
+              {discoverEvent2.map((item) => {
                 return (
                   <div className="home-box">
                     <img
