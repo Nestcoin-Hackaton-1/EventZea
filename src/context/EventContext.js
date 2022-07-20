@@ -534,10 +534,12 @@ export const EventProvider = ({ children }) => {
       });
       const tx = await contract.buyTicket(eventId);
       await tx.wait(1);
+
       setLoading(false);
       NotificationManager.success("Transaction successful", "Success");
       window.location.reload();
     } catch (error) {
+      console.log(error.transaction);
       setLoading(false);
       NotificationManager.error(error.reason, "Error");
       console.log(error.message);
