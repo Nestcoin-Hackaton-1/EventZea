@@ -199,19 +199,35 @@ export const EventProvider = ({ children }) => {
     try {
       const allEvents = await contract.fetchAllEvents();
       const popular = [];
+      const eventl = [];
       allEvents.map((item) => {
-        if (
+        const count =
           Number(BigNumber.from(item.ticketCount)) -
-            Number(BigNumber.from(item.ticketRemaining)) >=
-          1
+          Number(BigNumber.from(item.ticketRemaining));
+        console.log(count);
+        console.log(
+          Number(BigNumber.from(item.startdate)),
+          new Date().getTime()
+        );
+        if (
+          count >= 1 &&
+          Number(BigNumber.from(item.ticketRemaining)) !== 0 &&
+          Number(BigNumber.from(item.startdate)) * 1000 > new Date().getTime()
         ) {
           popular.push(item);
+        }
+
+        if (
+          Number(BigNumber.from(item.ticketRemaining)) !== 0 &&
+          Number(BigNumber.from(item.startdate)) * 1000 > new Date().getTime()
+        ) {
+          eventl.push(item);
         }
       });
       console.log(popular);
       console.log(allEvents);
-      setEventList(allEvents);
-      setDiscoverEvent(allEvents);
+      setEventList(eventl);
+      setDiscoverEvent(eventl);
       setPopularEvent(popular);
       setLoading1(false);
     } catch (error) {
